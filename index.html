@@ -38,7 +38,6 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            position: relative;
         }
 
         button {
@@ -58,8 +57,7 @@
         .no {
             background-color: red;
             color: white;
-            position: absolute;
-            transition: left 0.3s ease, top 0.3s ease;
+            position: relative;
         }
 
         .hidden {
@@ -167,16 +165,17 @@
             let containerRect = container.getBoundingClientRect();
             let buttonRect = noBtn.getBoundingClientRect();
 
-            let moveX = Math.random() * 80 - 40; // Moves slightly left or right
-            let moveY = Math.random() * 80 - 40; // Moves slightly up or down
+            let offsetX = Math.random() * 50 - 25; // Moves slightly left or right
+            let offsetY = Math.random() * 50 - 25; // Moves slightly up or down
 
-            let finalX = containerRect.left + containerRect.width / 2 + moveX;
-            let finalY = containerRect.top + containerRect.height / 2 + moveY;
+            let finalX = containerRect.left + containerRect.width / 2 + offsetX;
+            let finalY = containerRect.top + containerRect.height / 2 + offsetY;
 
             // Keep "No" button close to the container
-            finalX = Math.max(containerRect.left - 50, Math.min(finalX, containerRect.right + 50));
-            finalY = Math.max(containerRect.top - 50, Math.min(finalY, containerRect.bottom + 50));
+            finalX = Math.max(containerRect.left - 40, Math.min(finalX, containerRect.right + 10));
+            finalY = Math.max(containerRect.top - 40, Math.min(finalY, containerRect.bottom + 10));
 
+            noBtn.style.position = "absolute";
             noBtn.style.left = `${finalX}px`;
             noBtn.style.top = `${finalY}px`;
         }
